@@ -11,7 +11,8 @@ if (isset($_POST['submit'])) {
         $errors = "You must fill in the task";
     } else {
         $task = $_POST['task'];
-        $sql = "INSERT INTO tasks (task) VALUES ('$task')";
+        $id = $_POST['id'];
+        $sql = "INSERT INTO tasks (id, task) VALUES ('$id','$task')";
         mysqli_query($db, $sql);
         header('location: index.php');
     }
@@ -38,6 +39,7 @@ if (isset($_GET['del_task'])) {
         <h2 style="font-style: 'Hervetica';">ToDo List Application PHP and MySQL database</h2>
     </div>
     <form method="post" action="index.php" class="input_form">
+        <input type="text" name="id" class="task_input">
         <input type="text" name="task" class="task_input">
         <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
     </form>
@@ -46,6 +48,7 @@ if (isset($_GET['del_task'])) {
         <thead>
             <tr>
                 <th>N</th>
+                <th>Id</th>
                 <th>Tasks</th>
                 <th style="width: 60px;">Action</th>
             </tr>
@@ -60,6 +63,7 @@ if (isset($_GET['del_task'])) {
             while ($row = mysqli_fetch_array($tasks)) { ?>
                 <tr>
                     <td> <?php echo $i; ?> </td>
+                    <td  class="id"><?php echo $row['id']; ?> </td>
                     <td class="task"> <?php echo $row['task']; ?> </td>
                     <td class="delete">
                         <a href="index.php?del_task=<?php echo $row['id'] ?>">x</a>

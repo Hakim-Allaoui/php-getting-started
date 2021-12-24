@@ -59,8 +59,12 @@ tr:hover {
 	background: #E9E9E9;
 }
 
+.id {
+	text-align: center;
+}
+
 .task {
-	text-align: left;
+	text-align: center;
 }
 
 .delete{
